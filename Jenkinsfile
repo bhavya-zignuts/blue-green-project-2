@@ -5,7 +5,7 @@ pipeline {
         DOCKER_HUB_USER = 'bhavyatank13'
         FRONTEND_IMAGE  = 'bhavyatank13/frontend-app'
         BACKEND_IMAGE   = 'bhavyatank13/backend-app'
-        APP_SERVER_IP   = '<APP_SERVER_IP>'   // ← Replace with your App Server IP
+        APP_SERVER_IP   = '3.68.217.228'   // ← Replace with your App Server IP
         APP_SERVER_USER = 'ubuntu'
         TAG             = "${BUILD_NUMBER}"
     }
