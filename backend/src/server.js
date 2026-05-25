@@ -30,22 +30,3 @@ app.get('/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
-```
-
----
-
-### FILE 5: backend/package.json
-
-```json
-{
-  "name": "backend-app",
-  "version": "1.0.0",
-  "description": "Blue-Green Deployment Backend",
-  "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-}
