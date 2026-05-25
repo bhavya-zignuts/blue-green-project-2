@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue-Green App</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f0f4f8;
+    }
+    .card {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 { color: #2d3748; font-size: 2rem; margin-bottom: 10px; }
+    p  { color: #718096; font-size: 1rem; margin-top: 8px; }
+    .version { 
+      display: inline-block;
+      background: #48bb78;
+      color: white;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 16px;
+    }
+    .api-test {
+      margin-top: 24px;
+      padding: 16px;
+      background: #ebf8ff;
+      border-radius: 8px;
+    }
+    button {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+    button:hover { background: #3182ce; }
+    #api-result { margin-top: 10px; color: #2d3748; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello from Frontend!</h1>
+    <p>Blue-Green Deployment Project</p>
+    <span class="version">Version 1</span>
+
+    <div class="api-test">
+      <p>Test Backend API:</p>
+      <button onclick="callBackend()">Call /api/hello</button>
+      <div id="api-result"></div>
+    </div>
+  </div>
+
+  <script>
+    async function callBackend() {
+      try {
+        const res = await fetch('/api/hello');
+        const data = await res.json();
+        document.getElementById('api-result').textContent = JSON.stringify(data);
+      } catch (e) {
+        document.getElementById('api-result').textContent = 'Error: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
+```
+
+---
+
+### FILE 2: frontend/nginx.conf
+
+(Nginx inside the frontend Docker container — serves static files)
+
+```nginx
+server {
+    listen 3000;
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

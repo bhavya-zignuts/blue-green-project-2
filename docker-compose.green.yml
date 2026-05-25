@@ -1,0 +1,18 @@
+services:
+  frontend-green:
+    image: bhavyatank13/frontend-app:${TAG}
+    container_name: frontend-green
+    ports:
+      - "3002:3000"
+    environment:
+      - ENV=green
+    restart: unless-stopped
+
+  backend-green:
+    image: bhavyatank13/backend-app:${TAG}
+    container_name: backend-green
+    ports:
+      - "5002:5000"
+    environment:
+      - ENV=green
+    restart: unless-stopped
