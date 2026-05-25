@@ -56,7 +56,7 @@
   <div class="card">
     <h1>Hello from Frontend!</h1>
     <p>Blue-Green Deployment Project</p>
-    <span class="version">Version 1</span>
+    <span class="version">Version 2</span>
 
     <div class="api-test">
       <p>Test Backend API:</p>
@@ -78,23 +78,3 @@
   </script>
 </body>
 </html>
-```
-
----
-
-### FILE 2: frontend/nginx.conf
-
-(Nginx inside the frontend Docker container — serves static files)
-
-```nginx
-server {
-    listen 3000;
-    server_name _;
-
-    root /usr/share/nginx/html;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
