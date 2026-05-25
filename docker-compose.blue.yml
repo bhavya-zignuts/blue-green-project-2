@@ -1,3 +1,5 @@
+name: blue-project
+
 services:
   frontend-blue:
     image: bhavyatank13/frontend-app:${TAG}

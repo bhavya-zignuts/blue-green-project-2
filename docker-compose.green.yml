@@ -1,3 +1,5 @@
+name: green-project
+
 services:
   frontend-green:
     image: bhavyatank13/frontend-app:${TAG}
